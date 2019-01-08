@@ -1,0 +1,77 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package datesort;
+
+import static java.lang.Integer.parseInt;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Braintech
+ */
+public class DateSort {
+
+    /**
+     * @param args the command line arguments
+     */
+    
+   static boolean compare(String First,String Second)
+{
+    
+    String FirstYear = First.substring(0,4);
+    String SecondYear = Second.substring(0,4);
+    String FirstMonth = First.substring(5,7);
+    String SecondMonth = Second.substring(5,7);
+    String FirstDay = First.substring(8);
+    String SecondDay = Second.substring(8);
+    String Date1 = FirstYear+FirstMonth+FirstDay;
+    String Date2 = SecondYear+SecondMonth+SecondDay;
+    long one = Long.parseLong(Date1);
+    long two = Long.parseLong(Date2);
+    if(one < two)
+        return true;
+    else
+        return false;
+}
+    
+    
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int number;
+Scanner s = new Scanner(System.in);
+number = s.nextInt();
+String[] dates = new String[number];
+s.nextLine();
+System.out.println("Enter Dates \n YYYY/MM/DD");
+for(int i=0;i<number;i++)
+{
+    
+    dates[i] = s.nextLine();
+}
+
+
+for(int i=0;i<number;i++)
+{
+    for(int j=0;j<number;j++)
+    {
+       if(compare(dates[i],dates[j]))
+        {
+            String temporary = dates[i];
+            dates[i] = dates[j];
+            dates[j]= temporary;
+        }
+    }
+}
+System.out.println("Sorted Dated");
+for(int i=0;i<number;i++)
+{
+System.out.println(dates[i]);
+}
+
+
+    }
+}
